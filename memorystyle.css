@@ -8,8 +8,8 @@
 	}
 
 .flip-container, .front, .back {
-	width: 60px;
-	height: 75px;
+	width: 100px;
+	height: 140px;
 	float: left;
 	margin:2px;
 }
@@ -18,14 +18,12 @@
 .flipper {
 	transition: 0.6s;
 	transform-style: preserve-3d;
-
 	position: relative;
 }
 
 /* hide back of pane during swap */
 .front, .back {
 	backface-visibility: hidden;
-
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -43,8 +41,78 @@
 .back {
 	background-color: blue;
 	transform: rotateY(180deg);
+	left:-4px;
+}
+.marcadorbig{
+	position: fixed;
+	left: 0px;
+	top: 10%;
+	height: 10em;
+	width: 5em;
+	background-color: blue;
+	font-family: 'Saira Extra Condensed', sans-serif;
+}
+.marcador1, .marcador2, .marcador3{
+	height:50px;
+	width:5em;
+	text-align:center;
+	line-height: 15px;
+	
+}
+.marcador1{
+	background-color:red;
+	padding-top:10px;
+	
+}
+#check, #check2{
+	margin:0;
+}
+.marcador2{
+	background-color:green;
+	padding-top: 20px;
+
+}
+.marcador3{
+	background-color: yellow;
+	padding-top: 20px;
+	line-height: 20px;
+
+}
+#tableroide{
+	display: none;
+	border: solid 1px;
 }
 
-#uno{
-	background-image; url("hueva.jpg");
+.marcador3:hover{
+	background-color: yellow;
+	width: 200px;
+	height: 200px;
+}
+
+.marcador3:hover > #tableroide{
+	display: inline !important;
+}
+
+.contingut2, .contingut4, .contingut6, .contingut8{
+	background-color: rgb(210,210,210);
+	margin-left:auto;
+	margin-right: auto;
+	display:block;
+}
+.contingut2{
+	
+	width: 212px;
+	height: 292px;
+}
+.contingut4{
+	width: 420px;
+	height: 580px;
+}
+.contingut6{
+	width: 628px;
+	height: 868px;
+}
+.contingut8{
+	width: 836px;
+	height: 1156px;
 }
