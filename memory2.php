@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 	<title></title>
@@ -14,7 +14,7 @@
 	$selectOption = $_POST['numeru'];
 	$numero = $selectOption * $selectOption;
 	$parejas=$numero/2;
-	echo "<div class='marcadorbig'> <div class='marcador1' >Parejas restantes:<p id='check'>$parejas</p></div> <div class='marcador2'>Intentos: <p id='check2'>0</p></div> <div class='marcador3'>Scores </br> <table id='tableroide'><tr></tr></table></div></div>";
+	echo "<div class='marcadorbig'> <div class='marcador4' id='reloj'>00 : 00 : 00 : 00</div><div class='marcador1' >Parejas restantes:<p id='check'>$parejas</p></div> <div class='marcador2'>Intentos: <p id='check2'>0</p></div> <div class='marcador3'>Scores </br> <table id='tableroide'><tr></tr></table></div></div>";
 	for($j=0;$j<$numero/2;$j++){
 		$j=$j+1;
 		array_push($jarray,"carta".$j);

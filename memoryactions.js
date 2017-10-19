@@ -8,6 +8,10 @@ var win;
 var restantes;
 var intento;
 var nombrescore;
+var tiempo;
+var marcha=0; //control del temporizador
+var cro=0; //estado inicial del cronómetro.
+var visor;
 
 //Esta funcion gira las cartas añadiendo el estilo 'hueva', que se encarga del giro de las cartas (div frontal con la imagen general --> div back con la imagen especifica para jugar)
 //utiliza el mecanismo 'event' para fijarse en la carta a la cual se le ha hecho click
@@ -62,7 +66,8 @@ function check(){
 function winconditioninit(){
 	win = document.getElementById('check').innerHTML;
 	restantes = win;
-
+	visor=document.getElementById("reloj"); //localizar pantalla del reloj
+	empezar();
 }
 //
 function intentos(){
@@ -85,6 +90,7 @@ function nombreparascore() {
 function wincondition(){
 	contadorwin=contadorwin+1;
 	if (contadorwin==win){
+		parar();
 		alert("WIN!");
 		score();
 	}
@@ -94,10 +100,50 @@ function wincondition(){
 function score() {
 	nombreparascore();
 	var tabla = document.getElementById('tableroide');
-	var fila = tabla.insertRow(0);
+	var fila = tabla.insertRow(-1);
 	var casillanombre = fila.insertCell(0);
 	var casillaintentos = fila.insertCell(1);
-	//var casillatiempo
+	var casillatiempo = fila.insertCell(2)
 	casillanombre.innerHTML = nombrescore;
 	casillaintentos.innerHTML = intento;
+	casillatiempo.innerHTML = tiempo;
+}
+
+function empezar() {
+	if (marcha==0) { //solo si el cronómetro esta parado
+		emp=new Date() //fecha actual
+		elcrono=setInterval(tiempo,10); //función del temporizador.
+        marcha=1 //indicamos que se ha puesto en marcha.
+	}
+}
+
+function tiempo() { //función del temporizador
+	actual=new Date() //fecha en el instante
+    cro=actual-emp //tiempo transcurrido en milisegundos
+    cr=new Date() //fecha donde guardamos el tiempo transcurrido
+    cr.setTime(cro) 
+    cs=cr.getMilliseconds() //milisegundos del cronómetro
+    cs=cs/10; //paso a centésimas de segundo.
+    cs=Math.round(cs)
+    sg=cr.getSeconds(); //segundos del cronómetro
+    mn=cr.getMinutes(); //minutos del cronómetro
+	ho=cr.getHours()-1; //horas del cronómetro
+	if (cs<10) {
+		cs="0"+cs;
+	} //poner siempre 2 cifras en los números
+	if (sg<10) {
+		sg="0"+sg;
+	} 
+	if (mn<10) {
+		mn="0"+mn;
+	} 
+    visor.innerHTML=ho+" : "+mn+" : "+sg+" : "+cs; //pasar a pantalla.
+}
+
+function parar() {
+         if (marcha==1) { //sólo si está en funcionamiento
+            clearInterval(elcrono); //parar el crono
+            marcha=0; //indicar que está parado.
+			tiempo = document.getElementById('reloj').innerHTML;
+            }		
 }
