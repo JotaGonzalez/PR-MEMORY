@@ -127,7 +127,6 @@ function tiempo() { //función del temporizador
     cs=Math.round(cs)
     sg=cr.getSeconds(); //segundos del cronómetro
     mn=cr.getMinutes(); //minutos del cronómetro
-	ho=cr.getHours()-1; //horas del cronómetro
 	if (cs<10) {
 		cs="0"+cs;
 	} //poner siempre 2 cifras en los números
@@ -137,7 +136,7 @@ function tiempo() { //función del temporizador
 	if (mn<10) {
 		mn="0"+mn;
 	} 
-    visor.innerHTML=ho+" : "+mn+" : "+sg+" : "+cs; //pasar a pantalla.
+    visor.innerHTML=mn+":"+sg+":"+cs; //pasar a pantalla.
 }
 
 function parar() {

@@ -1,0 +1,3 @@
+NOM,INTENTS,TEMPS
+hola,3,00:00:00
+jose,2,00:05:92

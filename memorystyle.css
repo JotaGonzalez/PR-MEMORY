@@ -80,10 +80,9 @@
 }
 #tableroide{
 	display: none;
-	border: solid 1px;
 }
-table, tr, td{
-border: solid 2px black;
+tr, td{
+border: solid 1px black;
 }
 
 .marcador3:hover{
