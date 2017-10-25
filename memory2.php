@@ -23,6 +23,7 @@
 	}
 	fclose($myfile);
 	echo "</table></div></div>";
+
 	for($j=0;$j<$numero/2;$j++){
 		$j=$j+1;
 		array_push($jarray,"carta".$j);
@@ -64,5 +65,8 @@
 		echo"</div>";
 	}
 ?>
+<form action="ranking.php" method="POST">
+	<button>Gugar</button>
+</form>
 </body>
-</html>
+</html>º
