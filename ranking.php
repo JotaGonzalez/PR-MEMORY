@@ -1,8 +1,12 @@
-<?php
-$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-$txt = "Mickey Mouse\n";
-fwrite($myfile, $txt);
-$txt = "Minnie Mouse\n";
-fwrite($myfile, $txt);
-fclose($myfile);
-?>
+<html>
+<head>
+</head>
+<body>
+	<?php
+	$myfile = fopen("scoreboard.txt", "a") or die("Unable to open file!");
+	$txt = $_POST['textoranking'];
+	fwrite($myfile, "\n".$txt);
+	fclose($myfile);
+	?>
+</body>
+</html>

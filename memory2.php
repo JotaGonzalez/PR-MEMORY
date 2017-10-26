@@ -65,8 +65,11 @@
 		echo"</div>";
 	}
 ?>
-<form action="ranking.php" method="POST">
-	<button>Gugar</button>
-</form>
+<div class="botonsuelo">
+	<form action="ranking.php" method="POST">
+		<input type="hidden" name="textoranking" value="" id="textoranking"></input>
+		<button>Gugar</button>
+	</form>
+</div>
 </body>
-</html>º
+</html>
