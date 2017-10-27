@@ -9,6 +9,11 @@
 
 </head>
 <body onload="winconditioninit()">
+
+<audio id="audiouno" src="correct.wav" type="audio/wav"></audio>
+<audio id="audiodos" src="incorrect.wav" type="audio/wav"></audio>
+<audio id="audiotres" src="flip.wav" type="audio/wav"></audio>
+
 	<?php
 
 	$jarray = [];
@@ -22,7 +27,7 @@
     	echo "<tr><td>" . str_replace(',','</td><td>',$data) . '</td></tr>';
 	}
 	fclose($myfile);
-	echo "</table></div></div>";
+	echo "</table></div><div class='marcador5'><button id='halp' onclick='halp()'>Halp</button></div></div>";
 
 	for($j=0;$j<$numero/2;$j++){
 		$j=$j+1;
@@ -33,6 +38,7 @@
 	shuffle($jarray);
 
 	if ($selectOption == 2){
+		echo "<div id='mode'>2x2</div>";
 		echo "<div class='contingut2'>";
 		for($i=0;$i<$numero;$i++){
 			$carta=$jarray[$i];
@@ -41,6 +47,7 @@
 		echo"</div>";
 	}
 	elseif ($selectOption == 4){
+		echo "<div id='mode'>4x4</div>";
 		echo "<div class='contingut4'>";
 		for($i=0;$i<$numero;$i++){
 			$carta=$jarray[$i];
@@ -49,6 +56,7 @@
 		echo "</div>";
 	}
 	elseif ($selectOption == 6){
+		echo "<div id='mode'>6x6</div>";
 		echo "<div class='contingut6'>";
 		for($i=0;$i<$numero;$i++){
 			$carta=$jarray[$i];
@@ -57,6 +65,7 @@
 		echo"</div>";
 		}
 	elseif ($selectOption == 8){
+		echo "<div id='mode'>8x8</div>";
 		echo "<div class='contingut8'>";
 		for($i=0;$i<$numero;$i++){
 			$carta=$jarray[$i];

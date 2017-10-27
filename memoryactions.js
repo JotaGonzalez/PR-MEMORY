@@ -6,12 +6,14 @@ var id2;
 var contadorwin = 0;
 var win;
 var restantes;
-var intento;
+var intento=0;
 var nombrescore;
 var tiempo;
+var modo;
 var marcha=0; //control del temporizador
 var cro=0; //estado inicial del cronómetro.
 var visor;
+var contadorhalp=0;
 
 //Esta funcion gira las cartas añadiendo el estilo 'hueva', que se encarga del giro de las cartas (div frontal con la imagen general --> div back con la imagen especifica para jugar)
 //utiliza el mecanismo 'event' para fijarse en la carta a la cual se le ha hecho click
@@ -19,8 +21,10 @@ var visor;
 //una vez giradas dos cartas y haber capturado sus ids pasamos a la funcion check(), con un delay para poder ver las cartas.
 //intentos() suma el intento al total. Mas adelante hay mas detalle.
 function darvuelta(event){
+	document.getElementById('audiotres').play();
 	giradas += 1;
 	if(giradas == 1){
+		document.getElementById('halp').onclick = "";
 		intentos();
 		div1 = event.currentTarget;
 		div1.classList.add("hueva");
@@ -38,6 +42,7 @@ function darvuelta(event){
 			id2 = div2.id;
 			giradas=0;
 			setTimeout("check()",750);
+			document.getElementById('halp').addEventListener('click', halp);
 		}
 	}
 }
@@ -49,11 +54,15 @@ function darvuelta(event){
 function check(){
 	//intentos();
 	if (id1 != id2){
+		document.getElementById('audiodos').play();
 		div1.classList.remove("hueva");
 		div2.classList.remove("hueva");
 	}
 	else{
+		document.getElementById('audiouno').play();
 		contadorparejahecha();
+		div1.classList.add('inerte');
+		div2.classList.add('inerte');
 		div1.onclick = '';
 		div2.onclick = '';
 		wincondition();
@@ -90,6 +99,7 @@ function nombreparascore() {
 function wincondition(){
 	contadorwin=contadorwin+1;
 	if (contadorwin==win){
+		document.getElementById('halp').onclick = "";
 		parar();
 		alert("WIN!");
 		score();
@@ -98,12 +108,15 @@ function wincondition(){
 }
 
 function score() {
+	modo = document.getElementById('mode').innerHTML;
 	nombreparascore();
 	var tabla = document.getElementById('tableroide');
 	var fila = tabla.insertRow(-1);
-	var casillanombre = fila.insertCell(0);
-	var casillaintentos = fila.insertCell(1);
-	var casillatiempo = fila.insertCell(2)
+	var casillamodo = fila.insertCell(0);
+	var casillanombre = fila.insertCell(1);
+	var casillaintentos = fila.insertCell(2);
+	var casillatiempo = fila.insertCell(3);
+	casillamodo.innerHTML = modo;
 	casillanombre.innerHTML = nombrescore;
 	casillaintentos.innerHTML = intento;
 	casillatiempo.innerHTML = tiempo;
@@ -137,13 +150,43 @@ function tiempo() { //función del temporizador
 	if (mn<10) {
 		mn="0"+mn;
 	} 
-    visor.innerHTML=mn+":"+sg+":"+cs; //pasar a pantalla.
+	visor.innerHTML=mn+":"+sg+":"+cs; //pasar a pantalla.
 }
 
 function parar() {
-         if (marcha==1) { //sólo si está en funcionamiento
-            clearInterval(elcrono); //parar el crono
-            marcha=0; //indicar que está parado.
+		if (marcha==1) { //sólo si está en funcionamiento
+			clearInterval(elcrono); //parar el crono
+			marcha=0; //indicar que está parado.
 			tiempo = document.getElementById('reloj').innerHTML;
-            }		
+		}		
+}
+
+function halp(){
+	document.getElementById('halp').onclick = "";
+	if (contadorhalp >= 3){
+		alert('Sori m8, ja no queden ajudes');
+	}
+	else{
+		contadorhalp = contadorhalp+1;
+		intento = intento + 5;
+		document.getElementById('check2').innerHTML = intento;
+		var todaslascartas = document.getElementsByClassName('flip-container');
+		for (var i = todaslascartas.length - 1; i >= 0; i--) {
+			todaslascartas[i].classList.add("hueva");
+		}
+		
+		setTimeout("halp2()",3000);
+	}
+}
+
+function halp2(){
+	var todaslascartas = document.getElementsByClassName('flip-container');
+		for (var i = todaslascartas.length - 1; i >= 0; i--) {
+			if (todaslascartas[i].classList.contains('inerte')){
+			}
+			else{
+				todaslascartas[i].classList.remove("hueva");
+			}
+		}
+	document.getElementById('halp').addEventListener('click', halp);
 }

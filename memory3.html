@@ -11,6 +11,7 @@
 			<option value="2" selected>2x2</option>
 			<option value="4">4x4</option>
 			<option value="6">6x6</option>
+			<option value="8">8x8</option>
 		</select>
 		<input type="submit">
 	</form>
