@@ -15,27 +15,34 @@
 <audio id="audiotres" src="flip.wav" type="audio/wav"></audio>
 
 	<?php
-
-	$jarray = [];
+	
 	$selectOption = $_POST['numeru'];
 	$numero = $selectOption * $selectOption;
 	$parejas=$numero/2;
-	echo "<div class='marcadorbig'> <div class='marcador4' id='reloj'>00:00:00</div><div class='marcador1' >Parejas restantes:<p id='check'>$parejas</p></div> <div class='marcador2'>Intentos: <p id='check2'>0</p></div> <div class='marcador3'>Scores </br> <table id='tableroide'>";
+	echo "<div class='marcadorbig'> <div class='marcador4' id='reloj'>00:00:00</div><div class='marcador1' >Parejas restantes:<p id='check'>$parejas</p></div> <div class='marcador2'>Intentos: <p id='check2'>0</p></div> <div class='marcador3'>Scores worldwide</br> <table id='tableroide'>";
 	$myfile = fopen("scoreboard.txt", "r") or die("Unable to open file!");
 	while (!feof($myfile)){   
     	$data = fgets($myfile); 
     	echo "<tr><td>" . str_replace(',','</td><td>',$data) . '</td></tr>';
 	}
 	fclose($myfile);
-	echo "</table></div><div class='marcador5'><button id='halp' onclick='halp()'>Halp</button></div></div>";
+	echo "</table></div><div class='marcador6'>Score local</br><table id='tableroide2'></table></div><div class='marcador5'><button id='halp' onclick='halp()'>Halp</button></div></div>";
 
-	for($j=0;$j<$numero/2;$j++){
-		$j=$j+1;
-		array_push($jarray,"carta".$j);
-		array_push($jarray,"carta".$j);
-		$j=$j-1;
+	session_start();
+	if (!isset($_SESSION['jarray'])){
+		$jarray = [];
+		for($j=0;$j<$numero/2;$j++){
+			$j=$j+1;
+			array_push($jarray,"carta".$j);
+			array_push($jarray,"carta".$j);
+			$j=$j-1;
+			shuffle($jarray);
+		}
+	}else{
+		$jarray = $_SESSION['jarray'];
 	}
-	shuffle($jarray);
+	
+	
 
 	if ($selectOption == 2){
 		echo "<div id='mode'>2x2</div>";
@@ -73,6 +80,7 @@
 		}
 		echo"</div>";
 	}
+	$_SESSION['jarray']=$jarray;
 ?>
 <div class="botonsuelo">
 	<form action="ranking.php" method="POST">

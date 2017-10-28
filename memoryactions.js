@@ -103,8 +103,8 @@ function wincondition(){
 		parar();
 		alert("WIN!");
 		score();
+		score2();
 	}
-	
 }
 
 function score() {
@@ -120,7 +120,22 @@ function score() {
 	casillanombre.innerHTML = nombrescore;
 	casillaintentos.innerHTML = intento;
 	casillatiempo.innerHTML = tiempo;
-	document.getElementById("textoranking").value = nombrescore+","+intento+","+tiempo;
+	document.getElementById("textoranking").value = modo+","+nombrescore+","+intento+","+tiempo;
+}
+
+function score2() {
+	modo = document.getElementById('mode').innerHTML;
+	var tabla2 = document.getElementById('tableroide2');
+	var fila2 = tabla2.insertRow(-1);
+	var casillamodo = fila2.insertCell(0);
+	var casillanombre = fila2.insertCell(1);
+	var casillaintentos = fila2.insertCell(2);
+	var casillatiempo = fila2.insertCell(3);
+	casillamodo.innerHTML = modo;
+	casillanombre.innerHTML = nombrescore;
+	casillaintentos.innerHTML = intento;
+	casillatiempo.innerHTML = tiempo;
+	document.getElementById("textoranking").value = modo+","+nombrescore+","+intento+","+tiempo;
 }
 
 function empezar() {

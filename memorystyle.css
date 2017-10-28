@@ -52,7 +52,7 @@
 	background-color: blue;
 	font-family: 'Saira Extra Condensed', sans-serif;
 }
-.marcador1, .marcador2, .marcador3, .marcador4, .marcador5{
+.marcador1, .marcador2, .marcador3, .marcador4, .marcador5, .marcador6{
 	height:50px;
 	width:5em;
 	text-align:center;
@@ -88,7 +88,12 @@
 	padding-top: 20px;
 	line-height: 20px;
 }
-#tableroide{
+.marcador6{
+	background-color: brown;
+	padding-top: 20px;
+	line-height: 20px;
+}
+#tableroide, #tableroide2{
 	display: none;
 }
 tr, td{
@@ -102,6 +107,15 @@ border: solid 1px black;
 }
 
 .marcador3:hover > #tableroide{
+	display: inline !important;
+}
+.marcador6:hover{
+	background-color: brown;
+	width: 200px;
+	height: 200px;
+}
+
+.marcador6:hover > #tableroide2{
 	display: inline !important;
 }
 
