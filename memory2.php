@@ -13,9 +13,9 @@
 <audio id="audiouno" src="correct.wav" type="audio/wav"></audio>
 <audio id="audiodos" src="incorrect.wav" type="audio/wav"></audio>
 <audio id="audiotres" src="flip.wav" type="audio/wav"></audio>
-
-	<?php
-	
+<h1 class="titulo">MEMORY </h1>
+<?php
+	$jarray;
 	$selectOption = $_POST['numeru'];
 	$numero = $selectOption * $selectOption;
 	$parejas=$numero/2;
@@ -29,6 +29,7 @@
 	echo "</table></div><div class='marcador6'>Score local</br><table id='tableroide2'></table></div><div class='marcador5'><button id='halp' onclick='halp()'>Halp</button></div></div>";
 
 	session_start();
+	
 	if (!isset($_SESSION['jarray'])){
 		$jarray = [];
 		for($j=0;$j<$numero/2;$j++){
@@ -39,7 +40,21 @@
 			shuffle($jarray);
 		}
 	}else{
-		$jarray = $_SESSION['jarray'];
+		if (isset($_SESSION['selectoption'])){
+			if ($_SESSION['selectoption']!=$selectOption){
+				$jarray = [];
+				for($j=0;$j<$numero/2;$j++){
+					$j=$j+1;
+					array_push($jarray,"carta".$j);
+					array_push($jarray,"carta".$j);
+					$j=$j-1;
+					shuffle($jarray);
+				}
+			}else{
+				$jarray = $_SESSION['jarray'];
+			}
+		}
+		
 	}
 	
 	
@@ -80,12 +95,19 @@
 		}
 		echo"</div>";
 	}
+	$_SESSION['selectoption']=$selectOption;
 	$_SESSION['jarray']=$jarray;
 ?>
 <div class="botonsuelo">
 	<form action="ranking.php" method="POST">
 		<input type="hidden" name="textoranking" value="" id="textoranking"></input>
-		<button>Gugar</button>
+		<button>Guardar en ranking</button>
+	</form>
+</div>
+<div class="botonsuelo">
+	<form action="memory2.php" method="POST">
+		<input type="hidden" name="textoranking2" value="" id="textoranking2"></input>
+		<button>Jugar otra vez</button>
 	</form>
 </div>
 </body>
