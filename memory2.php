@@ -15,6 +15,8 @@
 <audio id="audiotres" src="flip.wav" type="audio/wav"></audio>
 <h1 class="titulo">MEMORY </h1>
 <?php
+	session_start();
+
 	$jarray;
 	$selectOption = $_POST['numeru'];
 	$numero = $selectOption * $selectOption;
@@ -28,7 +30,7 @@
 	fclose($myfile);
 	echo "</table></div><div class='marcador6'>Score local</br><table id='tableroide2'></table></div><div class='marcador5'><button id='halp' onclick='halp()'>Halp</button></div></div>";
 
-	session_start();
+	
 	
 	if (!isset($_SESSION['jarray'])){
 		$jarray = [];
@@ -97,6 +99,7 @@
 	}
 	$_SESSION['selectoption']=$selectOption;
 	$_SESSION['jarray']=$jarray;
+
 ?>
 <div class="botonsuelo">
 	<form action="ranking.php" method="POST">

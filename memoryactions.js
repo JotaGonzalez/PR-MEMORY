@@ -135,7 +135,8 @@ function score2() {
 	casillanombre.innerHTML = nombrescore;
 	casillaintentos.innerHTML = intento;
 	casillatiempo.innerHTML = tiempo;
-	document.getElementById("textoranking").value = modo+","+nombrescore+","+intento+","+tiempo;
+	alert(modo+","+nombrescore+","+intento+","+tiempo);
+	document.getElementById("textoranking2").value = modo+","+nombrescore+","+intento+","+tiempo+"|";
 }
 
 function empezar() {

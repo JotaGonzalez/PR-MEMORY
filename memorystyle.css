@@ -59,7 +59,7 @@ body{
 	text-align:center;
 	line-height: 15px;
 	padding:20px !important;
-	color:white;
+	color:white !important;
 	border: 2px solid white;
 	
 	
@@ -107,6 +107,7 @@ body{
 }
 tr, td{
 border: solid 1px black;
+color:white;
 }
 button{
 	color: white;
@@ -231,3 +232,6 @@ button{
 	}
 }
 
+#tableroide2{
+	color:white;
+}
